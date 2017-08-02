@@ -1,0 +1,22 @@
+{
+  "name": "express-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lihlepaie/express.git"
+  },
+  "author": "lihlepaie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lihlepaie/express/issues"
+  },
+  "homepage": "https://github.com/lihlepaie/express#readme",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
+}
