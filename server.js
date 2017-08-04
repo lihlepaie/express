@@ -1,13 +1,42 @@
 var express = require('express');
 var app = express();
+var greetedUser=[];
+
 
 // create a route
-app.get('/', function (req, res) {
- res.send('Hello Codex!');
-});
+
 app.get('/greetings/:name', function (req, res) {
   console.log(req.params.name);
- res.send("Hello : "+req.params.name);
+  var name = req.params.name;
+  greetedUser.push(name);
+ res.send("Hello , "+req.params.name);
+
+});
+//create a greetedUser.push(name); route
+app.get('/greeted', function (req, res) {
+  console.log(greetedUser);
+  // var name = req.params.name;
+  var uniqueList=[];
+  for (var i = 0; i < greetedUser.length; i++) {
+    if(uniqueList.indexOf(greetedUser[i])===-1){
+      console.log(greetedUser);
+      uniqueList.push(greetedUser[i]);
+    }
+  }
+    res.send(uniqueList);
+
+});
+// creating a router for counter
+app.get('/counter/:names', function (req, res) {
+  var name = req.params.names;
+  var greetingsCounter=0;
+  for (var i = 0; i < greetedUser.length; i++) {
+  if ( greetedUser[i]=== name){
+
+    greetingsCounter++;
+}
+}
+res.send(" has been greeted " +  greetingsCounter +  ' times ');
 });
 
 //start the server
