@@ -1,7 +1,10 @@
 var express = require('express');
+var exphbs = require('express-handlebars');
 var app = express();
 var greetedUser=[];
 
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
 
 // create a route
 
@@ -23,7 +26,7 @@ app.get('/greeted', function (req, res) {
       uniqueList.push(greetedUser[i]);
     }
   }
-    res.send(uniqueList);
+    res.render('index', {names:uniqueList});
 
 });
 // creating a router for counter
@@ -36,7 +39,7 @@ app.get('/counter/:names', function (req, res) {
     greetingsCounter++;
 }
 }
-res.send(" has been greeted " +  greetingsCounter +  ' times ');
+res.send("Hello, " + name + " has been greeted " +  greetingsCounter +  ' times ');
 });
 
 //start the server
