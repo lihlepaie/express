@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/lihlepaie/express#readme",
   "dependencies": {
+    "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "install": "^0.10.1",
     "nodemon": "^1.11.0"
