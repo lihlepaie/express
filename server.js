@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 // const nameRoutes = NameRoutes();
 var app = express();
 var greetedUser = [];
+var names = []
 
 app.engine('handlebars', exphbs({
     defaultLayout: 'main'
@@ -13,9 +14,9 @@ app.set('view engine', 'handlebars');
 app.use(express.static('public'));
 
 // create application/x-www-form-urlencoded parser
-var urlencodedParser = bodyParser.urlencoded({
+app.use(bodyParser.urlencoded({
     extended: false
-})
+}));
 
 // create application/json parser
 var jsonParser = bodyParser.json()
@@ -26,8 +27,13 @@ app.get('/names/add', function(req, res) {
 })
 
 app.post('/names/add', function(req, res){
-  res.render('names/add')
-})
+  var name = req.body.name
+     names.push(name);
+  res.render('names/index',{names:names})
+
+});
+
+
 
 
 // create a route
