@@ -1,6 +1,8 @@
 var express = require('express');
 var exphbs = require('express-handlebars');
 var bodyParser = require('body-parser');
+var flash = require('express-flash')
+var session = require('express-session')
 // const nameRoutes = NameRoutes();
 var app = express();
 var greetedUser = [];
@@ -20,6 +22,14 @@ app.use(bodyParser.urlencoded({
 
 // create application/json parser
 var jsonParser = bodyParser.json()
+
+app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 * 30}}))
+app.use(flash());
+
+app.get('/names/add', function(req, res){
+  req.flash('error', 'name already exist')
+})
+
 
 
 app.get('/names/add', function(req, res) {

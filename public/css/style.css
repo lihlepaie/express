@@ -9,6 +9,9 @@ body{
   padding: 1em;
   font-family: "Arial"
 }
+.erro{
+  color: green;
+}
 .header{
   display: inline;
 }
