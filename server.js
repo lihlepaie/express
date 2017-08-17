@@ -26,22 +26,38 @@ var jsonParser = bodyParser.json()
 app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 * 30}}))
 app.use(flash());
 
-app.get('/names/add', function(req, res){
-  req.flash('error', 'name already exist')
-})
-
+//});
 
 
 app.get('/names/add', function(req, res) {
-    res.render('names/add')
-})
+    res.render('names/add');
+    
+
+});
 
 app.post('/names/add', function(req, res){
   var name = req.body.name
-     names.push(name);
-  res.render('names/index',{names:names})
-
+     names.push(name)
+  res.render('names/add' ,{message: ' hello ,' +name});
 });
+
+// app.get('/names/add', function(req, res) {
+//  var name = req.body.name
+// var searchName = greetedUser.find(function(currentName){
+//   return currentName === name;
+// });
+
+//   if (!searchName) {
+//     greetedUser.push(name)
+//   }
+//   else {
+//     req.flash('error', 'Names cannot be blank!')
+  //}
+//
+//});
+//
+
+
 
 
 
@@ -49,7 +65,7 @@ app.post('/names/add', function(req, res){
 // create a route
 
 app.get('/greetings/:name', function(req, res) {
-    console.log(req.params.name);
+    // console.log(req.body.name);
     var name = req.params.name;
     greetedUser.push(name);
     res.send("Hello , " + req.params.name);
@@ -85,11 +101,9 @@ app.get('/counter/:names', function(req, res) {
 });
 
 //start the server
-var server = app.listen(3000, function() {
-
+    var server = app.listen(3000, function() {
     var host = server.address().address;
     var port = server.address().port;
 
     console.log('node server.js', host, port);
-
-});
+  });
