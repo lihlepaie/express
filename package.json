@@ -20,6 +20,7 @@
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "express-flash": "git://github.com/RGBboy/express-flash.git",
+    "express-handlebars": "^3.0.0",
     "express-session": "^1.15.5",
     "install": "^0.10.1",
     "nodemon": "^1.11.0"
