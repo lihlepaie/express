@@ -27,8 +27,8 @@ app.use(flash());
 // create a route names
 app.get('/names/add', greetRoutes.index);
 app.post('/greetings', greetRoutes.greet);
-// app.get('/greetings/:name', greetRoutes.Search);
-// app.get('/greeted', greetRoutes.nameList);
+app.get('/greeted/:name', greetRoutes.greeted);
+app.get('/names/:greeted', greetRoutes.greetedCounter);
 // app.get('/counter/:names', greetRoutes.counter);
 
 //start the server
