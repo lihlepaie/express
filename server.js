@@ -32,7 +32,7 @@ app.get('/count/:name', greetRoutes.greetedCounter);
 // app.get('/counter/:names', greetRoutes.counter);
 
 //start the server
-var server = app.listen(3000, function() {
+var server = app.listen(5000, function() {
     var host = server.address().address;
     var port = server.address().port;
 
