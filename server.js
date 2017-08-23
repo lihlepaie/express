@@ -32,9 +32,8 @@ app.get('/count/:name', greetRoutes.greetedCounter);
 // app.get('/counter/:names', greetRoutes.counter);
 
 //start the server
-var server = app.listen(5000, function() {
-    var host = server.address().address;
-    var port = server.address().port;
+app.set('port',(process.env.PORT || 5000) );
 
-    console.log('node server.js', host, port);
+app.listen(app.get('port'), function(){
+  console.log("Web app started on port: ", app.get('port'));
 });
