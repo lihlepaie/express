@@ -25,10 +25,10 @@ app.use(bodyParser.json());
 app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 * 30 }}));
 app.use(flash());
 // create a route names
-app.get('/names/add', greetRoutes.index);
+app.get('/', greetRoutes.index);
 app.post('/greetings', greetRoutes.greet);
-app.get('/greeted/:name', greetRoutes.greeted);
-app.get('/names/:greeted', greetRoutes.greetedCounter);
+app.get('/greeted', greetRoutes.greeted);
+app.get('/count/:name', greetRoutes.greetedCounter);
 // app.get('/counter/:names', greetRoutes.counter);
 
 //start the server
