@@ -23,6 +23,8 @@
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.5",
     "install": "^0.10.1",
+    "mongodb": "^2.2.31",
+    "mongoose": "^4.11.8",
     "nodemon": "^1.11.0"
   },
   "devDependencies": {
