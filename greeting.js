@@ -1,4 +1,4 @@
-module.exports = function() {
+module.exports = function(models) {
 
     var greetedUser = []
     var language = []
@@ -29,13 +29,13 @@ module.exports = function() {
     const greetedCounter = function(req, res) {
       var name = req.params.name;
       var greetingsCounter = 0;
-      // for (var i = 0; i < greetedUser.length; i++) {
-      //     if (greetedUser[i] === name) {
-      //
-      //         greetingsCounter++;
-      //     }
-      //
-      // }
+      for (var i = 0; i < greetedUser.length; i++) {
+          if (greetedUser[i] === name) {
+
+              greetingsCounter++;
+          }
+
+      }
       var mssg =  "Hello, " + name + " has been greeted " + greetingsCounter + ' times ';
       res.render("names/greetedCounter",{name: mssg});
 }

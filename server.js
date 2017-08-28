@@ -6,7 +6,11 @@ var flash = require('express-flash')
 var session = require('express-session')
 // var nameRoutes = NameRoutes();
 var GreetRoutes = require('./greeting');
-var greetRoutes = GreetRoutes();
+var Models = require('./models')
+
+var models = Models('mongodb://localhost/listNames');
+
+var greetRoutes = GreetRoutes(models);
 var app = express();
 
 
