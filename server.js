@@ -8,11 +8,9 @@ var session = require('express-session')
 var GreetRoutes = require('./greeting');
 var Models = require('./models')
 
-var models = Models('mongodb://localhost/listNames');
-
+var models = Models('mongodb://localhost/greeted');
 var greetRoutes = GreetRoutes(models);
 var app = express();
-
 
 app.set('view engine', 'handlebars');
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
