@@ -38,6 +38,9 @@ app.get('/greeted', greetRoutes.greeted);
 app.post('/names/add', greetRoutes.greet);
 app.get('/names/:greetings', greetRoutes.greeted);
 app.get('/counter/:name', greetRoutes.greetedCounter);
+app.post('/reset', function(req, res){
+
+});
 
 //start the server
 app.set('port',(process.env.PORT || 5000) );
