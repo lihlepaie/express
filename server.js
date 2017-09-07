@@ -8,7 +8,7 @@ var session = require('express-session')
 var GreetRoutes = require('./greeting');
 var Models = require('./models')
 
-var models = Models('mongodb://localhost/greeted');
+var models = Models(process.env.MONGO_DB_URL || 'mongodb://localhost/greeted');
 var greetRoutes = GreetRoutes(models);
 var app = express();
 
@@ -27,11 +27,17 @@ app.use(bodyParser.json());
 app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 * 30 }}));
 app.use(flash());
 // create a route names
-app.get('/', greetRoutes.index);
+// app.get('/', greetRoutes.Index);
+app.get('/',function(req,res){
+  res.redirect('/greeted')
+})
+
+app.get('/greetings', greetRoutes.index);
 app.post('/greetings', greetRoutes.greet);
 app.get('/greeted', greetRoutes.greeted);
-app.get('/count/:name', greetRoutes.greetedCounter);
-// app.get('/counter/:names', greetRoutes.counter);
+app.post('/names/add', greetRoutes.greet);
+app.get('/names/:greetings', greetRoutes.greeted);
+app.get('/counter/:name', greetRoutes.greetedCounter);
 
 //start the server
 app.set('port',(process.env.PORT || 5000) );

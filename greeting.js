@@ -4,68 +4,70 @@ module.exports = function(models) {
     var language = []
 
     const index = function(req, res, next) {
-        models.Greeted.find({}, function(err, greeteds) {
+      res.render('names/add');
 
-            if (err) {
-                return next(err)
-            }
-            res.render('names/add');
-        });
     };
 
     const greet = function(req, res, next) {
+
+        var language = req.body.language;
+
         var user = {
             name: req.body.name,
             counter: 1
         }
 
-        function storeNames(name, cb){
-            Greeted.findOne({name : name}, function(err, person){
-
-                if (!person){
-                    var people = new person({ name: name, timesGreeted : 1 });
-                    people.save(cb);
-                }
-
-                else{
-
-                    if (person.timesGreeted > 5){
-                        person.timesGreeted = 0;
-                    }
-                    else{
-                        person.timesGreeted = person.timesGreeted + 1;
-                    }
-                    person.save(cb);
-                }
-            });
+        if (!user.name || !language) {
+          req.flash('error', 'Name should not be blank and plase select language to be greeted in');
+          res.redirect('/greeted');
         }
-        var language = req.body.language;
-        var greetmessage = language + ',' + user.name;
+        else {
+          models.Greeted.create( user, function(err, results){
+            if (err){
+              if (err.code === 11000){
+                models.Greeted.findOne({
+                  name : user.name
+                })
+                .exec(function(err, results){
+                  if (results){
+                    results.counter = results.counter + 1;
+                    results.save();
+                  }
+                })
+                req.flash('error', 'Welcome back, ' + user.name);
+              }
+              else {
+                return next(err);
+              }
+            }
+            models.Greeted.find({}, function(err, results){
+                if (err) {
+                  return next(err);
+                }
+                else {
 
-        models.Greeted.create(user, function(err, results) {
-            console.log(results);
-            if (err) {
-                return next(err)
-            };
-            // saved!
-            res.render('names/add', {
-                message: greetmessage,
-                count: results.number
+                  var message = language + ", " + user.name;
+                  res.render('names/add', {
+                    message : message,
+                    count: results.length});
+                }
+            })
 
-            });
-        })
+          })
+          }
     }
 
     const greeted = function(req, res, next) {
-        models.Greeted.find({}, function(err, results) {
+        models.Greeted.find({}, function(err, names) {
             if (err) {
                 return next(err);
-            } else {
+            }
+            //else {
                 res.render('names/greeted', {
-                    names: results
+                    names:names
 
                 });
-            }
+            //}
         })
 
     }
@@ -79,7 +81,7 @@ module.exports = function(models) {
         //         greetingsCounter++;
 
 
-        models.Greeted.findOne({ name }, function(err, greeted) {
+        models.Greeted.findOne({ name: req.params.name}, function(err, greeted) {
 
             if (err) {
                 return next(err)
