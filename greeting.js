@@ -131,7 +131,7 @@ module.exports = function(models) {
         greet,
         greeted,
         greetedCounter
-
+        
 
     }
 }
