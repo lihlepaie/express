@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 * 30 }}));
 app.use(flash());
-// create a route names
+
 // app.get('/', greetRoutes.Index);
 app.get('/',function(req,res){
   res.redirect('/greeted')
