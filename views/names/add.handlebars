@@ -1,23 +1,24 @@
-<h1>Greeting WebApp</h1>
+<h1>Greetings WebApp</h1>
 
 
 
 <form class="" action="/greetings" method="post">
   <input type="text" name="name" placeholder="Type any Name here">
-  <input type="submit" value="Greet">
-  <input type="submit" value="Reset"><br></br>
+  <input type="submit" value="Greet"><br></br>
   <input type="radio" name="language" value="Hello">English
   <input type="radio" name="language" value="Dumelaa">Isisotho
   <input type="radio" name="language" value="Ndaa">Tshivenda
 
   <br></br>
-    <a href="/names/greeted">View all greeted Names</a>
+    <a href="/greeted">View all greeted Names</a>
 
 
   <p>
-    {{message}}
+    {{message}}<br>
+    {{messages.error}}
   </p>
   <p>
     {{count}}
   </p>
 </form>
+  <a href="/reset"><input type="submit" value="Reset"></a>

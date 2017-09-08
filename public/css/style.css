@@ -9,12 +9,18 @@ body{
   padding: 1em;
   font-family: "Arial"
 }
-.erro{
-  color: green;
-}
+
 .header{
   display: inline;
 }
 label{
   font-weight: bold;
+}
+
+error{
+color: powderblue;
+}
+
+.Reset{
+background-color: green;
 }
