@@ -40,9 +40,18 @@ module.exports = function(models) {
                 return next(err);
               }
             }
+
             models.Greeted.find({}, function(err, results){
                 if (err) {
                   return next(err);
+
+                  models.Greeted.remove({}, function(err, remove){
+                    if (err) {
+                      return err;
+                  
+                    }
+
+                  })
                 }
                 else {
 
@@ -50,12 +59,14 @@ module.exports = function(models) {
                   res.render('names/add', {
                     message : message,
                     count: results.length});
+
                 }
             })
 
           })
           }
     }
+
 
     const greeted = function(req, res, next) {
         models.Greeted.find({}, function(err, names) {
@@ -131,7 +142,7 @@ module.exports = function(models) {
         greet,
         greeted,
         greetedCounter
-        
+
 
     }
 }
