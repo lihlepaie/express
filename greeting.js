@@ -18,7 +18,7 @@ module.exports = function(models) {
         }
 
         if (!user.name || !language) {
-            req.flash('error', 'Name should not be blank and please select language to be greeted in');
+            req.flash('error', 'Name should not be blank and please select any language to be greeted in');
             res.redirect('/greetings');
         } else {
             models.Greeted.create(user, function(err, results) {
